@@ -17,11 +17,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toLog(View view) {
-        Intent intent = new Intent(this, Log.class);
+        Intent intent = new Intent(this, FinanceLog.class);
+        startActivity(intent);
 
     }
     public void toBudget(View view){
-
+        Intent intent = new Intent(this, Budget.class);
+        startActivity(intent);
     }
 
     public static void log(String string) {
