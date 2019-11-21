@@ -12,4 +12,18 @@
         android:layout_height="wrap_content"
         android:text="Hello World!" />
 
+    <Button
+        android:id="@+id/toLogPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="toLog"
+        android:text="log page" />
+
+    <Button
+        android:id="@+id/Budget Page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="toBudget"
+        android:text="Budget Page" />
+
 </LinearLayout>
