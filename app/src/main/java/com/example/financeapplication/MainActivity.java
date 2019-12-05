@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     log(result.get(0).toString());
                     textView.setText(result.get(0).toString());
+
                 }
                 break;
             }
