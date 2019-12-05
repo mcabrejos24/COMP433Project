@@ -25,5 +25,16 @@
         android:layout_height="wrap_content"
         android:onClick="toBudget"
         android:text="Budget Page" />
+    <TextView
+        android:id = "@+id/text"
+        android:textSize = "30sp"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"/>
+    <ImageView
+        android:id = "@+id/speak"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:background = "?selectableItemBackground"
+        android:src = "@android:drawable/ic_btn_speak_now"/>
 
 </LinearLayout>
