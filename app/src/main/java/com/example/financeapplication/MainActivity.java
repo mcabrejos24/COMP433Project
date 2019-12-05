@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 if(resultCode == RESULT_OK && null != data) {
                     ArrayList result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                   Log.d("sirine", result.toString());
-                    //textView.setText(result.get(0));
+                   Log.d("sirine", result.get(0).toString());
+                    textView.setText(result.get(0).toString());
                 }
                 break;
             }
