@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    }
 
+    }
 
 
     public void toLog(View view) {
@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    public void toBudget(View view){
+
+    public void toBudget(View view) {
         Intent intent = new Intent(this, Budget.class);
         startActivity(intent);
     }
