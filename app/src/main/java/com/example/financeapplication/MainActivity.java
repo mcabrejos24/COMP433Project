@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
+        switch (requestCode) {
             case REQ_CODE: {
-                if(resultCode == RESULT_OK && null != data) {
+                if (resultCode == RESULT_OK && null != data) {
                     ArrayList result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                   Log.d("sirine", result.get(0).toString());
+                    log(result.get(0).toString());
                     textView.setText(result.get(0).toString());
                 }
                 break;
@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-    public void toBudget(View view){
+
+    public void toBudget(View view) {
         Intent intent = new Intent(this, Budget.class);
         startActivity(intent);
     }
