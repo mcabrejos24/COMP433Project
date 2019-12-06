@@ -87,7 +87,14 @@
         android:onClick="changeBudget"
         android:text="Fun: $0" />
 
-<!--    <Button-->
+    <Button
+        android:id="@+id/goHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goHome"
+        android:text="Home" />
+
+    <!--    <Button-->
 <!--        android:id="@+id/add"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->

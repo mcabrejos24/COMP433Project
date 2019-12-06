@@ -173,6 +173,9 @@ public class Budget extends AppCompatActivity {
     }
 
 
+    public void goHome(View view) {
+        finish();
+    }
 
 
 //    public void add(View view) {
