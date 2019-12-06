@@ -1,11 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/layout">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="budget page!" />
+        android:text="Update Budget" />
+
+    <TextView
+        android:id="@+id/budget"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:text="Total Budget: $0" />
+
+
+    <EditText
+        android:id="@+id/editTrans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/transBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="changeBudget"
+        android:text="Transportation: $0" />
+
+    <EditText
+        android:id="@+id/editGroc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/grocBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="changeBudget"
+        android:text="Groceries: $0" />
+
+    <EditText
+        android:id="@+id/editBills"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/billsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="changeBudget"
+        android:text="Bills: $0" />
+
+    <EditText
+        android:id="@+id/editRB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/rbBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="changeBudget"
+        android:text="Restaurants/Bars: $0" />
+
+    <EditText
+        android:id="@+id/editFun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/funBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="changeBudget"
+        android:text="Fun: $0" />
+
+<!--    <Button-->
+<!--        android:id="@+id/add"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:onClick="add"-->
+<!--        android:text="Add" />-->
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:id="@+id/scroll"/>-->
+<!--    </ScrollView>-->
 </LinearLayout>
