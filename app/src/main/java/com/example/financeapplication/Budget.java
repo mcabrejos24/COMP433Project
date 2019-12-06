@@ -17,7 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Budget extends AppCompatActivity {
 
-//    private ViewGroup rootView;
+    DBHelper mDatabase;
+
+    //    private ViewGroup rootView;
     EditText editTrans;
     EditText editGroc;
     EditText editBills;
@@ -41,12 +43,12 @@ public class Budget extends AppCompatActivity {
     Button budgetBtn;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.budget_layout);
+        mDatabase = new DBHelper(this);
 
         inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -77,7 +79,7 @@ public class Budget extends AppCompatActivity {
 //        Log.d("tag", budgetBtn.getText().toString());
 
         if (view.getId() == R.id.transBtn) {
-            if(!editingTrans) {
+            if (!editingTrans) {
                 editingTrans = true;
                 editTrans.setVisibility(View.VISIBLE);
             } else {
@@ -95,7 +97,7 @@ public class Budget extends AppCompatActivity {
                 }
             }
         } else if (view.getId() == R.id.grocBtn) {
-            if(!editingGroc) {
+            if (!editingGroc) {
                 editingGroc = true;
                 editGroc.setVisibility(View.VISIBLE);
             } else {
@@ -113,7 +115,7 @@ public class Budget extends AppCompatActivity {
                 }
             }
         } else if (view.getId() == R.id.billsBtn) {
-            if(!editingBills) {
+            if (!editingBills) {
                 editingBills = true;
                 editBills.setVisibility(View.VISIBLE);
             } else {
@@ -131,7 +133,7 @@ public class Budget extends AppCompatActivity {
                 }
             }
         } else if (view.getId() == R.id.rbBtn) {
-            if(!editingRB) {
+            if (!editingRB) {
                 editingRB = true;
                 editRB.setVisibility(View.VISIBLE);
             } else {
@@ -149,7 +151,7 @@ public class Budget extends AppCompatActivity {
                 }
             }
         } else if (view.getId() == R.id.funBtn) {
-            if(!editingFun) {
+            if (!editingFun) {
                 editingFun = true;
                 editFun.setVisibility(View.VISIBLE);
             } else {
@@ -196,7 +198,6 @@ public class Budget extends AppCompatActivity {
 //        rootView.addView(button);
 //
 //    }
-
 
 
 }
