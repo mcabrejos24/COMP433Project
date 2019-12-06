@@ -8,4 +8,55 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="log page" />
+
+    <TextView
+        android:id="@+id/expenseTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Expense:" />
+
+    <TextView
+        android:id="@+id/expense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/categoryTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Category:" />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/dateTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date:" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/amountTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Amount:" />
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id = "@+id/speak"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        android:background = "?selectableItemBackground"
+        android:src = "@android:drawable/ic_btn_speak_now"/>
+
 </LinearLayout>
