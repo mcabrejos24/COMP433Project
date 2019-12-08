@@ -4,12 +4,6 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txtview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="log page" />
-
-    <TextView
         android:id="@+id/expenseTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,11 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <Spinner
         android:id="@+id/categoryTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Category:" />
+        />
 
     <TextView
         android:id="@+id/category"
@@ -58,5 +52,12 @@
         android:layout_height = "wrap_content"
         android:background = "?selectableItemBackground"
         android:src = "@android:drawable/ic_btn_speak_now"/>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSubmit"
+        android:text="Button" />
 
 </LinearLayout>
