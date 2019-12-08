@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +37,9 @@ public class FinanceLog extends AppCompatActivity {
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Need to Speak");
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                        "How much did you spend? For example: \n" +
+                                "\"I spent {amount} dollars at {location} on {date}.\"");
                 try {
                     startActivityForResult(intent, REQ_CODE);
                 } catch (ActivityNotFoundException a) {
@@ -48,6 +52,11 @@ public class FinanceLog extends AppCompatActivity {
         mDatabase = new DBHelper(this);
         mDatabase.printCategories();
 
+        Spinner categories = (Spinner) findViewById(R.id.categoryTitle);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(FinanceLog.this,
+                android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.categories));
+        categories.setAdapter(adapter);
     }
 
     @Override
@@ -92,5 +101,9 @@ public class FinanceLog extends AppCompatActivity {
 
     }
 
+    public void onSubmit(View view) {
+        Spinner categories = (Spinner) findViewById(R.id.categoryTitle);
+        String Category = categories.getSelectedItem().toString();
+    }
 
 }
