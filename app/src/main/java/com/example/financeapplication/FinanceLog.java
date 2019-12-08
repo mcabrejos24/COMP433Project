@@ -15,7 +15,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class FinanceLog extends AppCompatActivity {
@@ -73,6 +77,7 @@ public class FinanceLog extends AppCompatActivity {
         int spentIndex = 0;
         boolean today = false;
         boolean yesterday = false;
+        String date;
 
         for (int i = 0; i < words.length; i++) {
             if (words[i].equals("at")) {
@@ -89,8 +94,33 @@ public class FinanceLog extends AppCompatActivity {
         TextView amount = findViewById(R.id.amount);
         expense.setText(words[atIndex + 1]);
         amount.setText(words[spentIndex + 1]);
+        TextView dateView = findViewById(R.id.date);
+        if(yesterday) {
+            date = getDateString(yesterday()).split(" ")[0];
+            dateView.setText(date);
+        } else if(today) {
+            date = getDateString(today()).split(" ")[0];
+            dateView.setText(date);
+        }
+
 
     }
+    private Date yesterday() {
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        return cal.getTime();
+    }
+    private String getDateString(Date date) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        return dateFormat.format(date);
+    }
+    private Date today() {
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, 0);
+        return cal.getTime();
+    }
+
+
 
 
 }
