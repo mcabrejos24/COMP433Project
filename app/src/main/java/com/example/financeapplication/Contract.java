@@ -2,7 +2,10 @@ package com.example.financeapplication;
 
 import android.provider.BaseColumns;
 
-public class Contract {
+public final class Contract {
+
+    private Contract(){}
+
     public static class CategoriesTable implements BaseColumns {
         public static final String TABLE_NAME = "categories";
         public static final String COLUMN_NAME_NAME = "name";
