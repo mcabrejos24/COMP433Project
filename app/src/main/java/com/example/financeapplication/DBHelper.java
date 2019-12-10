@@ -98,10 +98,10 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void printCategories() {
-        mDatabase = this;
-        new printCategoriesAsync().execute();
-    }
+//    public void printCategories() {
+//        mDatabase = this;
+//        new printCategoriesAsync().execute();
+//    }
 
     private class printCategoriesAsync extends AsyncTask<Void, Void, Cursor> {
 

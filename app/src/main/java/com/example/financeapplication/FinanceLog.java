@@ -61,7 +61,7 @@ public class FinanceLog extends AppCompatActivity {
         });
 
         mDatabase = new DBHelper(this);
-        mDatabase.printCategories();
+//        mDatabase.printCategories();
 
         Spinner categories = (Spinner) findViewById(R.id.categoryTitle);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(FinanceLog.this,

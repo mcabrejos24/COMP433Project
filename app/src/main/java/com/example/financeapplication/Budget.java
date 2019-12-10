@@ -1,6 +1,9 @@
 package com.example.financeapplication;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -71,6 +74,9 @@ public class Budget extends AppCompatActivity {
         editFun.setVisibility(View.GONE);
 
 //        rootView = (ViewGroup)findViewById(R.id.scroll);
+
+        mDatabase = new DBHelper(this);
+        new printCategoriesAsync().execute();
     }
 
 
@@ -180,7 +186,7 @@ public class Budget extends AppCompatActivity {
     }
 
 
-//    public void add(View view) {
+    //    public void add(View view) {
 //
 //        EditText edit = new EditText(Budget.this);
 ////        edit.setTransformationMethod();
@@ -198,6 +204,22 @@ public class Budget extends AppCompatActivity {
 //        rootView.addView(button);
 //
 //    }
+    private class printCategoriesAsync extends AsyncTask<Void, Void, Cursor> {
 
+        @Override
+        protected void onPostExecute(Cursor cursor) {
+            DBHelper.printCursor(cursor);
+            //(cursor); - Manuel: update the page with the content of this cursor
+
+        }
+
+        @Override
+        protected Cursor doInBackground(Void... voids) {
+            SQLiteDatabase db = mDatabase.getReadableDatabase();
+            String sql = "SELECT * FROM " + Contract.CategoriesTable.TABLE_NAME;
+            Cursor cursor = db.rawQuery(sql, null);
+            return cursor;
+        }
+    }
 
 }
