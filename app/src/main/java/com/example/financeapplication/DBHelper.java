@@ -9,6 +9,9 @@ import android.os.AsyncTask;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBHelper extends SQLiteOpenHelper {
     DBHelper mDatabase;
 
@@ -120,7 +123,8 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public static void printCursor(Cursor cursor) {
+    public static List<String> printCursor(Cursor cursor) {
+        List<String> list = new ArrayList<>();
         int columnCount = cursor.getColumnCount();
         StringBuilder line = new StringBuilder();
         for (int i = 0; i < columnCount; ++i) {
@@ -151,6 +155,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 }
             }
             MainActivity.log(line.toString());
+            list.add(line.toString());
         }
         while (cursor.moveToNext()) {
             line = new StringBuilder();
@@ -171,7 +176,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 }
             }
             MainActivity.log(line.toString());
+            list.add(line.toString());
         }
+        return list;
     }
 
 }

@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
 public class Budget extends AppCompatActivity {
 
     DBHelper mDatabase;
@@ -170,7 +172,7 @@ public class Budget extends AppCompatActivity {
                     funBudget = Double.valueOf(editFun.getText().toString());
                     budget += funBudget;
                     editingFun = false;
-                    budgetBtn.setText("FUN: $" + funBudget);
+                    budgetBtn.setText("Misc.: $" + funBudget);
                     inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                             InputMethodManager.HIDE_NOT_ALWAYS);
                     editFun.setVisibility(View.GONE);
@@ -192,7 +194,42 @@ public class Budget extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Cursor cursor) {
-            DBHelper.printCursor(cursor);
+            List<String> list = DBHelper.printCursor(cursor);
+            Log.d("this", list.toString());
+            for (int i = 0; i<list.size(); i++) {
+
+                String[] str = list.get(i).split("\t");
+                Log.d("str", str[2]);
+
+                if (list.get(i).contains("Trans")) {
+                    transBudget = Double.valueOf(str[2]);
+                    budget += transBudget;
+                    Button budgetBtn = (Button) findViewById(R.id.transBtn);
+                    budgetBtn.setText("TRANSPORTATION: $" + transBudget);
+                } else if (list.get(i).contains("Groc")) {
+                    grocBudget = Double.valueOf(str[2]);
+                    budget += grocBudget;
+                    Button budgetBtn = (Button) findViewById(R.id.grocBtn);
+                    budgetBtn.setText("TRANSPORTATION: $" + grocBudget);
+                } else if (list.get(i).contains("Rest")) {
+                    rbBudget = Double.valueOf(str[2]);
+                    budget += rbBudget;
+                    Button budgetBtn = (Button) findViewById(R.id.rbBtn);
+                    budgetBtn.setText("TRANSPORTATION: $" + rbBudget);
+                } else if (list.get(i).contains("Misc")) {
+                    funBudget = Double.valueOf(str[2]);
+                    budget += funBudget;
+                    Button budgetBtn = (Button) findViewById(R.id.funBtn);
+                    budgetBtn.setText("TRANSPORTATION: $" + funBudget);
+                } else if (list.get(i).contains("Bills")) {
+                    billsBudget = Double.valueOf(str[2]);
+                    budget += billsBudget;
+                    Button budgetBtn = (Button) findViewById(R.id.billsBtn);
+                    budgetBtn.setText("TRANSPORTATION: $" + billsBudget);
+                }
+                budgetView.setText("Total Budget :$" + budget);
+            }
+
             //(cursor); - Manuel: update the page with the content of this cursor
 
         }

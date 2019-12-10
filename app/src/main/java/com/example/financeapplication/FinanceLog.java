@@ -113,7 +113,7 @@ public class FinanceLog extends AppCompatActivity {
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    Log.d("sirine", result.get(0).toString());
+
                     parseText(result.get(0).toString());
                     //textView.setText(result.get(0));
                 }
@@ -125,6 +125,7 @@ public class FinanceLog extends AppCompatActivity {
 
 
     public void parseText(String result) {
+        Log.d("sirine", "full string: " + result);
         String[] words = result.split(" ");
         int atIndex = 0;
         int spentIndex = 0;
@@ -152,9 +153,59 @@ public class FinanceLog extends AppCompatActivity {
             dateobj = yesterday();
         } else if(today) {
             dateobj = today();
+        } else {
+            dateobj = parseDate(words);
         }
         updateLabel(dateobj);
-
+    }
+    public Date parseDate(String[] words) {
+        String month = words[words.length - 2];
+        int m = 0;
+        switch (month) {
+            case "January":
+                m = 0;
+                break;
+            case "February":
+                m = 1;
+                break;
+            case "March":
+                m = 2;
+                break;
+            case "April":
+                m = 3;
+                break;
+            case "May":
+                m = 4;
+                break;
+            case "June":
+                m = 5;
+                break;
+            case "July":
+                m = 6;
+                break;
+            case "August":
+                m = 7;
+                break;
+            case "September":
+                m = 8;
+                break;
+            case "October":
+                m = 9;
+                break;
+            case "November":
+                m = 10;
+                break;
+            case "December":
+                m = 11;
+                break;
+        }
+        String dayStr = words[words.length-1];
+        dayStr = dayStr.substring(0, dayStr.length() - 2);
+        int day = Integer.parseInt(dayStr);
+        Calendar cal = Calendar.getInstance();
+        Date d = new Date();
+        cal.set(d.getYear(), m, day, 0, 0);
+        return cal.getTime();
 
     }
     private Date yesterday() {
@@ -162,21 +213,22 @@ public class FinanceLog extends AppCompatActivity {
         cal.add(Calendar.DATE, -1);
         return cal.getTime();
     }
-    private String getDateString(Date date) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        return dateFormat.format(date);
-    }
+
     private Date today() {
         final Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 0);
         return cal.getTime();
     }
 
-
-
     public void onSubmit(View view) {
         Spinner categories = (Spinner) findViewById(R.id.categoryTitle);
         String Category = categories.getSelectedItem().toString();
+        TextView expense = findViewById(R.id.expense);
+        Log.d("sirine","expense: " + expense.getText().toString());
+        TextView amount = findViewById(R.id.amount);
+        Log.d("sirine","amount: " + amount.getText().toString());
+        TextView date = findViewById(R.id.date);
+        Log.d("sirine","date: " + date.getText().toString());
     }
 
 }
