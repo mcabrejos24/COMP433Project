@@ -1,6 +1,8 @@
 package com.example.financeapplication;
 
+import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,6 +31,9 @@ import java.util.Locale;
 public class FinanceLog extends AppCompatActivity {
     private final int REQ_CODE = 100;
     DBHelper mDatabase;
+    TextView dateEntry;
+    final Calendar myCalendar = Calendar.getInstance();
+    EditText edittext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +68,41 @@ public class FinanceLog extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.categories));
         categories.setAdapter(adapter);
+       // dateEntry = findViewById(R.id.date);
+       edittext = findViewById(R.id.date);
+
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel(myCalendar.getTime());
+            }
+
+        };
+        edittext.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(FinanceLog.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
+    }
+    private void updateLabel(Date d) {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        edittext.setText(sdf.format(d));
     }
 
     @Override
@@ -80,13 +122,15 @@ public class FinanceLog extends AppCompatActivity {
         }
     }
 
+
+
     public void parseText(String result) {
         String[] words = result.split(" ");
         int atIndex = 0;
         int spentIndex = 0;
         boolean today = false;
         boolean yesterday = false;
-        String date;
+        Date dateobj = new Date();
 
         for (int i = 0; i < words.length; i++) {
             if (words[i].equals("at")) {
@@ -103,14 +147,13 @@ public class FinanceLog extends AppCompatActivity {
         TextView amount = findViewById(R.id.amount);
         expense.setText(words[atIndex + 1]);
         amount.setText(words[spentIndex + 1]);
-        TextView dateView = findViewById(R.id.date);
+
         if(yesterday) {
-            date = getDateString(yesterday()).split(" ")[0];
-            dateView.setText(date);
+            dateobj = yesterday();
         } else if(today) {
-            date = getDateString(today()).split(" ")[0];
-            dateView.setText(date);
+            dateobj = today();
         }
+        updateLabel(dateobj);
 
 
     }
