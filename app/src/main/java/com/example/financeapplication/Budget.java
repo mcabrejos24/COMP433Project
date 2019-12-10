@@ -57,6 +57,7 @@ public class Budget extends AppCompatActivity {
     Button budgetBtn;
 
     String changeType;
+    Boolean categoryOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +115,7 @@ public class Budget extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 editTrans.setVisibility(View.GONE);
                 submitTrans.setVisibility(View.GONE);
+                new updateCategoryValueAsync("Transportation", transBudget).execute();
             }
         } else if (changeType == "groc") {
             if (editGroc.getText().toString().isEmpty()) {
@@ -128,6 +130,7 @@ public class Budget extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 editGroc.setVisibility(View.GONE);
                 submitGroc.setVisibility(View.GONE);
+                new updateCategoryValueAsync("Groceries", grocBudget).execute();
             }
         } else if (changeType == "bills") {
             if (editBills.getText().toString().isEmpty()) {
@@ -142,6 +145,7 @@ public class Budget extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 editBills.setVisibility(View.GONE);
                 submitBills.setVisibility(View.GONE);
+                new updateCategoryValueAsync("Bills", billsBudget).execute();
             }
         } else if (changeType == "rb") {
             if (editRB.getText().toString().isEmpty()) {
@@ -156,6 +160,7 @@ public class Budget extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 editRB.setVisibility(View.GONE);
                 submitRB.setVisibility(View.GONE);
+                new updateCategoryValueAsync("Restaurants/Bars", rbBudget).execute();
             }
         } else if (changeType == "misc") {
             if (editFun.getText().toString().isEmpty()) {
@@ -170,66 +175,72 @@ public class Budget extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 editFun.setVisibility(View.GONE);
                 submitMisc.setVisibility(View.GONE);
+                new updateCategoryValueAsync("misc.", funBudget).execute();
             }
         }
         budgetView.setText("Total Budget :$" + budget);
-
+        categoryOpen = false;
     }
 
 
     public void changeBudget(View view) {
-        budgetBtn = (Button) findViewById(view.getId());
-        if (view.getId() == R.id.transBtn) {
-            if (!editingTrans) {
-                editingTrans = true;
-                editTrans.setVisibility(View.VISIBLE);
-                submitTrans.setVisibility(View.VISIBLE);
-                changeType = "trans";
-            } else {
-                submit(view);
-            }
-        } else if (view.getId() == R.id.grocBtn) {
-            if (!editingGroc) {
-                editingGroc = true;
-                editGroc.setVisibility(View.VISIBLE);
-                submitGroc.setVisibility(View.VISIBLE);
-                changeType = "groc";
-            } else {
-                submit(view);
-            }
-        } else if (view.getId() == R.id.billsBtn) {
-            if (!editingBills) {
-                editingBills = true;
-                editBills.setVisibility(View.VISIBLE);
-                submitBills.setVisibility(View.VISIBLE);
-                changeType = "bills";
-            } else {
-                submit(view);
-            }
-        } else if (view.getId() == R.id.rbBtn) {
-            if (!editingRB) {
-                editingRB = true;
-                editRB.setVisibility(View.VISIBLE);
-                submitRB.setVisibility(View.VISIBLE);
-                changeType = "rb";
-            } else {
-                submit(view);
-            }
-        } else if (view.getId() == R.id.funBtn) {
-            if (!editingFun) {
-                editingFun = true;
-                editFun.setVisibility(View.VISIBLE);
-                submitMisc.setVisibility(View.VISIBLE);
-                changeType = "misc";
-            } else {
-                submit(view);
-
-
+        if (categoryOpen) {
+            Toast.makeText(this, "Please close the current category to open a new one.", Toast.LENGTH_SHORT).show();
+        } else {
+            categoryOpen = true;
+            budgetBtn = (Button) findViewById(view.getId());
+            if (view.getId() == R.id.transBtn) {
+                if (!editingTrans) {
+                    editingTrans = true;
+                    editTrans.setVisibility(View.VISIBLE);
+                    submitTrans.setVisibility(View.VISIBLE);
+                    changeType = "trans";
+                    editTrans.requestFocus();
+                } else {
+                    submit(view);
+                }
+            } else if (view.getId() == R.id.grocBtn) {
+                if (!editingGroc) {
+                    editingGroc = true;
+                    editGroc.setVisibility(View.VISIBLE);
+                    submitGroc.setVisibility(View.VISIBLE);
+                    changeType = "groc";
+                    editGroc.requestFocus();
+                } else {
+                    submit(view);
+                }
+            } else if (view.getId() == R.id.billsBtn) {
+                if (!editingBills) {
+                    editingBills = true;
+                    editBills.setVisibility(View.VISIBLE);
+                    submitBills.setVisibility(View.VISIBLE);
+                    changeType = "bills";
+                    editBills.requestFocus();
+                } else {
+                    submit(view);
+                }
+            } else if (view.getId() == R.id.rbBtn) {
+                if (!editingRB) {
+                    editingRB = true;
+                    editRB.setVisibility(View.VISIBLE);
+                    submitRB.setVisibility(View.VISIBLE);
+                    changeType = "rb";
+                    editRB.requestFocus();
+                } else {
+                    submit(view);
+                }
+            } else if (view.getId() == R.id.funBtn) {
+                if (!editingFun) {
+                    editingFun = true;
+                    editFun.setVisibility(View.VISIBLE);
+                    submitMisc.setVisibility(View.VISIBLE);
+                    changeType = "misc";
+                    editFun.requestFocus();
+                } else {
+                    submit(view);
+                }
             }
         }
-//        budgetView.setText("Total Budget :$" + budget);
-
-
     }
 
 
@@ -247,8 +258,6 @@ public class Budget extends AppCompatActivity {
             for (int i = 0; i < list.size(); i++) {
 
                 String[] str = list.get(i).split("\t");
-                Log.d("str", str[2]);
-
                 if (list.get(i).contains("Trans")) {
                     transBudget = Double.valueOf(str[2]);
                     editTrans.setText(str[2]);
@@ -301,7 +310,11 @@ public class Budget extends AppCompatActivity {
 
         updateCategoryValueAsync(String category, Double amt) {
             this.category = category;
-            this.amount = amt;
+            if (amt < 0) {
+                this.amount = 5.0;
+            } else {
+                this.amount = amt;
+            }
         }
 
         @Override
