@@ -231,4 +231,9 @@ public class FinanceLog extends AppCompatActivity {
         Log.d("sirine","date: " + date.getText().toString());
     }
 
+    public void toHome(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }
