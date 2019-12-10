@@ -172,7 +172,7 @@ public class Budget extends AppCompatActivity {
                     funBudget = Double.valueOf(editFun.getText().toString());
                     budget += funBudget;
                     editingFun = false;
-                    budgetBtn.setText("Misc.: $" + funBudget);
+                    budgetBtn.setText("Miscellaneous: $" + funBudget);
                     inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                             InputMethodManager.HIDE_NOT_ALWAYS);
                     editFun.setVisibility(View.GONE);
