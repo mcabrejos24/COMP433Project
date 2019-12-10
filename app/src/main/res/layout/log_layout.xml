@@ -62,6 +62,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onSubmit"
-        android:text="Button" />
+        android:text="Submit" />
+
+    <Button
+        android:id="@+id/backHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="toHome"
+        android:text="Home Page" />
 
 </LinearLayout>

@@ -2,10 +2,10 @@
     <string name="app_name">Finance Application</string>
     
     <string-array name="categories">
+        <item>Miscellaneous</item>
         <item>Transportation</item>
         <item>Groceries</item>
         <item>Restaurants/Bars</item>
         <item>Bills</item>
-        <item>Misc</item>
     </string-array>
 </resources>
