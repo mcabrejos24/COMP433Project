@@ -1,5 +1,6 @@
 package com.example.financeapplication;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -77,6 +78,7 @@ public class Budget extends AppCompatActivity {
 
         mDatabase = new DBHelper(this);
         new printCategoriesAsync().execute();
+//        new updateCategoryValueAsync("Groceries", 250.0).execute();
     }
 
 
@@ -186,24 +188,6 @@ public class Budget extends AppCompatActivity {
     }
 
 
-    //    public void add(View view) {
-//
-//        EditText edit = new EditText(Budget.this);
-////        edit.setTransformationMethod();
-//        edit.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
-//
-//        Button button = new Button(Budget.this);
-//
-//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-//                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//
-//        params.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-//        params.addRule(RelativeLayout.BELOW, R.id.budgetbtn);
-//
-//        rootView.addView(edit);
-//        rootView.addView(button);
-//
-//    }
     private class printCategoriesAsync extends AsyncTask<Void, Void, Cursor> {
 
         @Override
@@ -222,4 +206,40 @@ public class Budget extends AppCompatActivity {
         }
     }
 
+
+    private class updateCategoryValueAsync extends AsyncTask<Void, Void, Integer> {
+        String category;
+        Double amount;
+
+        updateCategoryValueAsync(String category, Double amt) {
+            this.category = category;
+            this.amount = amt;
+        }
+
+        @Override
+        protected void onPostExecute(Integer changes) {
+            super.onPostExecute(changes);
+            MainActivity.log(changes + " rows changed");
+        }
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            SQLiteDatabase db = mDatabase.getWritableDatabase();
+            // New value for one column
+            ContentValues values = new ContentValues();
+            values.put(Contract.CategoriesTable.COLUMN_NAME_BUDGET_AMOUNT, this.amount);
+
+            String selection = Contract.CategoriesTable.COLUMN_NAME_NAME + " LIKE ?";
+            String[] selectionArgs = {this.category};
+
+
+            return db.update(
+                    Contract.CategoriesTable.TABLE_NAME,
+                    values,
+                    selection,
+                    selectionArgs);
+        }
+    }
 }
+
+
