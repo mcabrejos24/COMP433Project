@@ -85,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="changeBudget"
-        android:text="Fun: $0" />
+        android:text="Misc.: $0" />
 
     <Button
         android:id="@+id/goHome"
