@@ -17,12 +17,27 @@
         android:text="Total Budget: $0" />
 
 
-    <EditText
-        android:id="@+id/editTrans"
+    <LinearLayout
+        android:id="@+id/trans"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editTrans"
+            android:layout_width="233dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/submitTrans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="submit"
+            android:text="Submit" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/transBtn"
@@ -31,12 +46,28 @@
         android:onClick="changeBudget"
         android:text="Transportation: $0" />
 
-    <EditText
-        android:id="@+id/editGroc"
+    <LinearLayout
+        android:id="@+id/groc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editGroc"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/submitGroc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="submit"
+            android:text="Submit" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/grocBtn"
@@ -45,12 +76,27 @@
         android:onClick="changeBudget"
         android:text="Groceries: $0" />
 
-    <EditText
-        android:id="@+id/editBills"
+    <LinearLayout
+        android:id="@+id/bills"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editBills"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/submitBills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="submit"
+            android:text="Submit" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/billsBtn"
@@ -59,12 +105,27 @@
         android:onClick="changeBudget"
         android:text="Bills: $0" />
 
-    <EditText
-        android:id="@+id/editRB"
+    <LinearLayout
+        android:id="@+id/rb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editRB"
+            android:layout_width="235dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/submitRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="submit"
+            android:text="Submit" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/rbBtn"
@@ -73,19 +134,34 @@
         android:onClick="changeBudget"
         android:text="Restaurants/Bars: $0" />
 
-    <EditText
-        android:id="@+id/editFun"
+    <LinearLayout
+        android:id="@+id/misc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal" />
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editFun"
+            android:layout_width="235dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/submitFun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="submit"
+            android:text="Submit" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/funBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="changeBudget"
-        android:text="Misc.: $0" />
+        android:text="Miscellaneous: $0" />
 
     <Button
         android:id="@+id/goHome"
