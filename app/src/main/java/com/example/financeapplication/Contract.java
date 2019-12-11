@@ -16,9 +16,9 @@ public final class Contract {
                 + COLUMN_NAME_NAME + " TEXT, "
                 + COLUMN_NAME_BUDGET_AMOUNT + " INTEGER) ";
     }
-    public static class TagsTable implements BaseColumns {
-        public static final String TABLE_NAME = "tags";
-        public static final String COLUMN_NAME_EXPENSE = "expense";
+    public static class Expenses implements BaseColumns {
+        public static final String TABLE_NAME = "expenses";
+        public static final String COLUMN_NAME_EXPENSE = "expense_name";
         public static final String COLUMN_NAME_CATEGORY = "category";
         public static final String COLUMN_NAME_DATE = "date";
         public static final String COLUMN_NAME_AMOUNT = "amount";

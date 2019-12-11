@@ -61,7 +61,6 @@ public class FinanceLog extends AppCompatActivity {
         });
 
         mDatabase = new DBHelper(this);
-//        mDatabase.printCategories();
 
         Spinner categories = (Spinner) findViewById(R.id.categoryTitle);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(FinanceLog.this,
@@ -125,7 +124,7 @@ public class FinanceLog extends AppCompatActivity {
 
 
     public void parseText(String result) {
-        Log.d("sirine", "full string: " + result);
+        MainActivity.log( "full string: " + result);
         String[] words = result.split(" ");
         int atIndex = 0;
         int spentIndex = 0;

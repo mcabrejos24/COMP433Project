@@ -21,10 +21,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        MainActivity.log("oncreate called");
         mDatabase = this;
         sqLiteDatabase.execSQL(Contract.CategoriesTable.CREATE);
-        sqLiteDatabase.execSQL(Contract.TagsTable.CREATE);
+        sqLiteDatabase.execSQL(Contract.Expenses.CREATE);
         insertInitialCategories();
     }
 
@@ -34,12 +33,11 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "
                 + Contract.CategoriesTable.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "
-                + Contract.TagsTable.TABLE_NAME);
+                + Contract.Expenses.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 
     public void insertInitialCategories() {
-        MainActivity.log("insert initial categories");
         mDatabase = this;
         ContentValues p1 = new ContentValues();
         p1.put(Contract.CategoriesTable.COLUMN_NAME_NAME, "Transportation");
@@ -57,13 +55,6 @@ public class DBHelper extends SQLiteOpenHelper {
         p5.put(Contract.CategoriesTable.COLUMN_NAME_NAME, "Bills");
         p5.put(Contract.CategoriesTable.COLUMN_NAME_BUDGET_AMOUNT, 400);
         new Inserter(Contract.CategoriesTable.TABLE_NAME).execute(p1, p2, p3, p4, p5);
-    }
-
-    public void insertContent(ContentValues p1) {
-        MainActivity.log("inserting new value");
-        mDatabase = this;
-        new Inserter(Contract.CategoriesTable.TABLE_NAME).execute(p1);
-
     }
 
     public class Inserter extends AsyncTask<ContentValues, Void, Cursor> {
@@ -85,7 +76,6 @@ public class DBHelper extends SQLiteOpenHelper {
         @Override
         protected Cursor doInBackground(ContentValues... contentValues) {
             SQLiteDatabase db = mDatabase.getWritableDatabase();
-//            db.execSQL("Delete From " + mTableName);
             for (ContentValues contentValues1 : contentValues) {
                 db.insert(mTableName, null, contentValues1);
             }
@@ -101,17 +91,12 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-//    public void printCategories() {
-//        mDatabase = this;
-//        new printCategoriesAsync().execute();
-//    }
 
     private class printCategoriesAsync extends AsyncTask<Void, Void, Cursor> {
 
         @Override
         protected void onPostExecute(Cursor cursor) {
             printCursor(cursor);
-
         }
 
         @Override
@@ -180,6 +165,8 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return list;
     }
+
+
 
 }
 
