@@ -66,7 +66,7 @@ public class FinanceLog extends AppCompatActivity {
 
         Spinner categories = (Spinner) findViewById(R.id.categoryTitle);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(FinanceLog.this,
-                android.R.layout.simple_list_item_1,
+                R.layout.spinner_item,
                 getResources().getStringArray(R.array.categories));
         categories.setAdapter(adapter);
        // dateEntry = findViewById(R.id.date);
@@ -265,12 +265,24 @@ public class FinanceLog extends AppCompatActivity {
         String Category = categories.getSelectedItem().toString();
         Log.d("sirine","category: " + Category);
         TextView expense = findViewById(R.id.expense);
-        Log.d("sirine","expense: " + expense.getText().toString());
+        String expenseName = expense.getText().toString();
+        Log.d("sirine","expense: " + expenseName);
         TextView amount = findViewById(R.id.amount);
-        Integer amt = Integer.parseInt(amount.getText().toString().replace("$", ""));
+        Integer amt = 0;
+        if (!amount.getText().toString().isEmpty()){
+            amt = Integer.parseInt(amount.getText().toString().replace("$", ""));
+        }
         Log.d("sirine","amount: " + amt);
         TextView date = findViewById(R.id.date);
-        Log.d("sirine","date: " + date.getText().toString());
+        String date_string = date.getText().toString();
+        Log.d("sirine","date: " + date_string);
+
+//        Toast.makeText(this, expenseName, Toast.LENGTH_SHORT).show();
+        if (expenseName.equals("") || amt == 0 || date_string.equals("")){
+            Toast.makeText(this, "Please Fill in All Boxes", Toast.LENGTH_SHORT).show();
+        }
+        else{
+        }
     }
 
     public void toHome(View view) {

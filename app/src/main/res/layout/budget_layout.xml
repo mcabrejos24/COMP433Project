@@ -5,12 +5,6 @@
     android:id="@+id/layout">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Update Budget" />
-
-    <TextView
         android:id="@+id/budget"
         android:layout_width="match_parent"
         android:layout_height="42dp"

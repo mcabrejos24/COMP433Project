@@ -7,18 +7,31 @@
         android:id="@+id/expenseTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Expense:" />
+        android:layout_weight="1"
+        android:text="Expense"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="40dp"
+        />
 
-    <TextView
+    <EditText
         android:id="@+id/expense"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Category" />
+        android:layout_weight="1"
+        android:text="Category"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="40dp"/>
 
     <Spinner
         android:id="@+id/categoryTitle"
@@ -30,37 +43,55 @@
         android:id="@+id/dateTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date:" />
+        android:layout_weight="1"
+        android:text="Date:"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="40dp"/>
 
 
     <EditText
         android:id="@+id/date"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:focusable="false"
-        />
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/amountTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Amount:" />
+        android:layout_weight="1"
+        android:text="Amount:"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="40dp"/>
 
-    <TextView
+    <EditText
         android:id="@+id/amount"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="20dp"/>
+
     <ImageView
-        android:id = "@+id/speak"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:background = "?selectableItemBackground"
-        android:src = "@android:drawable/ic_btn_speak_now"/>
+        android:id="@+id/speak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="?selectableItemBackground"
+        android:src="@android:drawable/ic_btn_speak_now" />
 
     <Button
         android:id="@+id/submitButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:onClick="onSubmit"
         android:text="Submit" />
 
@@ -68,6 +99,7 @@
         android:id="@+id/backHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:onClick="toHome"
         android:text="Home Page" />
 
