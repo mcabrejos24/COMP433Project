@@ -136,7 +136,7 @@ public class FinanceLog extends AppCompatActivity {
         Date dateobj = new Date();
 
         for (int i = 0; i < words.length; i++) {
-            if (words[i].equals("at")) {
+            if (words[i].equals("at") || words[i].equals("on")) {
                 atIndex = i;
             } else if (words[i].equals("spent")) {
                 spentIndex = i;
@@ -150,6 +150,7 @@ public class FinanceLog extends AppCompatActivity {
         TextView amount = findViewById(R.id.amount);
         expense.setText(words[atIndex + 1]);
         amount.setText(words[spentIndex + 1]);
+        setSpinner(words[atIndex + 1]);
 
         if(yesterday) {
             dateobj = yesterday();
@@ -159,7 +160,42 @@ public class FinanceLog extends AppCompatActivity {
             dateobj = parseDate(words);
         }
         updateLabel(dateobj);
+
     }
+
+    public void setSpinner(String entry) {
+        Options options = new Options();
+        Map<String, String> map = options.getMap();
+        Spinner spin = findViewById(R.id.categoryTitle);
+        String category = map.get(entry);
+        Log.d("sirine", "setSpinner: " + category);
+        Log.d("sirine", "at 0: " + spin.getItemAtPosition(0).toString());
+        Log.d("sirine", "at 1: " + spin.getItemAtPosition(1).toString());
+        Log.d("sirine", "at 2: " + spin.getItemAtPosition(2).toString());
+        Log.d("sirine", "at 3: " + spin.getItemAtPosition(3).toString());
+        Log.d("sirine", "at 4: " + spin.getItemAtPosition(4).toString());
+
+        if (category != null) {
+            switch(category) {
+                case "Transportation":
+                    spin.setSelection(1);
+                    break;
+                case "Groceries":
+                    spin.setSelection(2);
+                    break;
+                case "Restaurants/Bars":
+                    spin.setSelection(3);
+                    break;
+                case "Bills":
+                    spin.setSelection(4);
+                    break;
+                case "Misc":
+                    spin.setSelection(0);
+                    break;
+            }
+        }
+    }
+
     public Date parseDate(String[] words) {
         String month = words[words.length - 2];
         int m = 0;
