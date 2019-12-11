@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             while (cursor.moveToNext()) {
 //                MainActivity.log(cursor.getString(0));
 //                MainActivity.log("num " + cursor.getInt(1));
-                pieData.add(new SliceValue(cursor.getInt(1), colors[colorpicker]).setLabel(cursor.getString(0) + ": " + cursor.getInt(1)));
+                pieData.add(new SliceValue(cursor.getInt(1), colors[colorpicker]).setLabel(cursor.getString(0) + ": $" + cursor.getInt(1)));
                colorpicker++;
             }
             PieChartData pieChartData = new PieChartData(pieData);

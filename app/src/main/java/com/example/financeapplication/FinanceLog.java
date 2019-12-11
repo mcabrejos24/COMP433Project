@@ -288,8 +288,8 @@ public class FinanceLog extends AppCompatActivity {
             p1.put(Contract.Expenses.COLUMN_NAME_DATE, date_string);
             p1.put(Contract.Expenses.COLUMN_NAME_AMOUNT, amt);
             new Inserter(Contract.Expenses.TABLE_NAME).execute(p1);
-
-
+            amount.setText("");
+            expense.setText("");
         }
     }
 
@@ -312,6 +312,7 @@ public class FinanceLog extends AppCompatActivity {
                 return;
             }
             printCursor(cursor);
+            Toast.makeText(FinanceLog.this, "Successfully added entry", Toast.LENGTH_SHORT).show();
         }
 
         @Override
