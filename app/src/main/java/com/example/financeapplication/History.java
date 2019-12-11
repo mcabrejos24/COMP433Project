@@ -1,10 +1,12 @@
 package com.example.financeapplication;
 
+import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static com.example.financeapplication.DBHelper.printCursor;
@@ -80,6 +83,18 @@ public class History extends AppCompatActivity {
                 Button button = new Button(History.this);
                 button.setLayoutParams(lp2);
                 button.setText("Delete");
+                button.setOnClickListener( new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        TableRow tr = (TableRow) v.getParent();
+                        for(int i = 0; i < 4; i++) {
+                            TextView t = (TextView) tr.getChildAt(i);
+                            Log.d("delete", t.getText().toString());
+                        }
+                    }
+                });
                 row.addView(button);
                 j++;
             }
@@ -90,6 +105,10 @@ public class History extends AppCompatActivity {
             SQLiteDatabase db = mDatabase.getReadableDatabase();
             return db.rawQuery("Select * from " + Contract.Expenses.TABLE_NAME + " Order by " + Contract.Expenses.COLUMN_NAME_DATE + "  DESC", null);
         }
+    }
+
+    public void delete(View v) {
+
     }
 
 
