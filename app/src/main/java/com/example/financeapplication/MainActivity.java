@@ -25,24 +25,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
     }
 
 
     public void toLog(View view) {
         Intent intent = new Intent(this, FinanceLog.class);
         startActivity(intent);
-
     }
 
     public void toBudget(View view) {
         Intent intent = new Intent(this, Budget.class);
         startActivity(intent);
     }
+    public void toHistory(View view) {
+        Intent intent = new Intent(this, History.class);
+        startActivity(intent);
+    }
 
     public static void log(String string) {
         Log.d("FINANCE_APP", string);
     }
+
 
 }

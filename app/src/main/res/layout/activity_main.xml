@@ -26,6 +26,12 @@
         android:onClick="toBudget"
         android:text="Budget Page" />
 
+    <Button
+        android:id="@+id/toHistPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="toHistory"
+        android:text="History Page" />
 
 
 </LinearLayout>
