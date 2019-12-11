@@ -168,12 +168,6 @@ public class FinanceLog extends AppCompatActivity {
         Map<String, String> map = options.getMap();
         Spinner spin = findViewById(R.id.categoryTitle);
         String category = map.get(entry);
-        Log.d("sirine", "setSpinner: " + category);
-        Log.d("sirine", "at 0: " + spin.getItemAtPosition(0).toString());
-        Log.d("sirine", "at 1: " + spin.getItemAtPosition(1).toString());
-        Log.d("sirine", "at 2: " + spin.getItemAtPosition(2).toString());
-        Log.d("sirine", "at 3: " + spin.getItemAtPosition(3).toString());
-        Log.d("sirine", "at 4: " + spin.getItemAtPosition(4).toString());
         if (category != null) {
             MainActivity.log(category);
             switch (category) {
