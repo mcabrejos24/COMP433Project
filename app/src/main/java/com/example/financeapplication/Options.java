@@ -7,10 +7,10 @@ public class Options {
     private Map<String, String> map = new HashMap<>();
 
     public Options() {
-        map.put("chick-fil-a", "Restaurants/Bars");
-        map.put("McDonalds", "Restaurants/Bars");
+        map.put("Chick-fil-A", "Restaurants/Bars");
+        map.put("McDonald's", "Restaurants/Bars");
         map.put("he's not here", "Restaurants/Bars");
-        map.put("cookout", "Restaurants/Bars"); //check
+        map.put("Cook-Out", "Restaurants/Bars"); //check
         map.put("Bojangles", "Restaurants/Bars");
         map.put("Moe's", "Restaurants/Bars"); //check
         map.put("Harris Teeter", "Groceries");
@@ -26,8 +26,8 @@ public class Options {
         map.put("gas", "Transportation");
         map.put("car service", "Transportation");
         map.put("subway ticket", "Transportation");
-        map.put("uber", "Transportation");
-        map.put("lift", "Transportation");
+        map.put("Uber", "Transportation");
+        map.put("Lyft", "Transportation");
         map.put("airplane ticket", "Transportation");
         map.put("Target", "Misc");
         map.put("Walmart", "Misc");

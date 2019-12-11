@@ -45,12 +45,12 @@ public class Budget extends AppCompatActivity {
     Button submitMisc;
 
 
-    double budget = 0;
-    double transBudget = 0;
-    double grocBudget = 0;
-    double billsBudget = 0;
-    double rbBudget = 0;
-    double funBudget = 0;
+    Integer budget = 0;
+    Integer transBudget = 0;
+    Integer grocBudget = 0;
+    Integer billsBudget = 0;
+    Integer rbBudget = 0;
+    Integer funBudget = 0;
 
     InputMethodManager inputManager;
     TextView budgetView;
@@ -107,7 +107,7 @@ public class Budget extends AppCompatActivity {
                 Toast.makeText(this, "Please enter a budget.", Toast.LENGTH_SHORT).show();
             } else {
                 budget -= transBudget;
-                transBudget = Double.valueOf(editTrans.getText().toString());
+                transBudget = Integer.valueOf(editTrans.getText().toString());
                 budget += transBudget;
                 editingTrans = false;
                 budgetBtn.setText("TRANSPORTATION: $" + transBudget);
@@ -115,14 +115,14 @@ public class Budget extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 editTrans.setVisibility(View.GONE);
                 submitTrans.setVisibility(View.GONE);
-                new updateCategoryValueAsync("Transportation", transBudget).execute();
+                new updateCategoryValueAsync("Transportation", (int) transBudget).execute();
             }
         } else if (changeType == "groc") {
             if (editGroc.getText().toString().isEmpty()) {
                 Toast.makeText(this, "Please enter a budget.", Toast.LENGTH_SHORT).show();
             } else {
                 budget -= grocBudget;
-                grocBudget = Double.valueOf(editGroc.getText().toString());
+                grocBudget = Integer.valueOf(editGroc.getText().toString());
                 budget += grocBudget;
                 editingGroc = false;
                 budgetBtn.setText("GROCERIES: $" + grocBudget);
@@ -130,14 +130,14 @@ public class Budget extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 editGroc.setVisibility(View.GONE);
                 submitGroc.setVisibility(View.GONE);
-                new updateCategoryValueAsync("Groceries", grocBudget).execute();
+                new updateCategoryValueAsync("Groceries", (int) grocBudget).execute();
             }
         } else if (changeType == "bills") {
             if (editBills.getText().toString().isEmpty()) {
                 Toast.makeText(this, "Please enter a budget.", Toast.LENGTH_SHORT).show();
             } else {
                 budget -= billsBudget;
-                billsBudget = Double.valueOf(editBills.getText().toString());
+                billsBudget = Integer.valueOf(editBills.getText().toString());
                 budget += billsBudget;
                 editingBills = false;
                 budgetBtn.setText("BILLS: $" + billsBudget);
@@ -145,14 +145,14 @@ public class Budget extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 editBills.setVisibility(View.GONE);
                 submitBills.setVisibility(View.GONE);
-                new updateCategoryValueAsync("Bills", billsBudget).execute();
+                new updateCategoryValueAsync("Bills", (int) billsBudget).execute();
             }
         } else if (changeType == "rb") {
             if (editRB.getText().toString().isEmpty()) {
                 Toast.makeText(this, "Please enter a budget.", Toast.LENGTH_SHORT).show();
             } else {
                 budget -= rbBudget;
-                rbBudget = Double.valueOf(editRB.getText().toString());
+                rbBudget = Integer.valueOf(editRB.getText().toString());
                 budget += rbBudget;
                 editingRB = false;
                 budgetBtn.setText("RESTAURANTS/BARS: $" + rbBudget);
@@ -160,25 +160,25 @@ public class Budget extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 editRB.setVisibility(View.GONE);
                 submitRB.setVisibility(View.GONE);
-                new updateCategoryValueAsync("Restaurants/Bars", rbBudget).execute();
+                new updateCategoryValueAsync("Restaurants/Bars", (int) rbBudget).execute();
             }
         } else if (changeType == "misc") {
             if (editFun.getText().toString().isEmpty()) {
                 Toast.makeText(this, "Please enter a budget.", Toast.LENGTH_SHORT).show();
             } else {
                 budget -= funBudget;
-                funBudget = Double.valueOf(editFun.getText().toString());
+                funBudget = Integer.valueOf(editFun.getText().toString());
                 budget += funBudget;
                 editingFun = false;
-                budgetBtn.setText("Misc.: $" + funBudget);
+                budgetBtn.setText("Miscellaneous: $" + funBudget);
                 inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
                 editFun.setVisibility(View.GONE);
                 submitMisc.setVisibility(View.GONE);
-                new updateCategoryValueAsync("misc.", funBudget).execute();
+                new updateCategoryValueAsync("misc.", (int) funBudget).execute();
             }
         }
-        budgetView.setText("Total Budget :$" + budget);
+        budgetView.setText("Total Budget: $" + budget);
         categoryOpen = false;
     }
 
@@ -259,37 +259,38 @@ public class Budget extends AppCompatActivity {
 
                 String[] str = list.get(i).split("\t");
                 if (list.get(i).contains("Trans")) {
-                    transBudget = Double.valueOf(str[2]);
+                    MainActivity.log(str.toString());
+                    transBudget = Integer.valueOf(str[2]);
                     editTrans.setText(str[2]);
                     budget += transBudget;
                     Button budgetBtn = (Button) findViewById(R.id.transBtn);
                     budgetBtn.setText("TRANSPORTATION: $" + transBudget);
                 } else if (list.get(i).contains("Groc")) {
-                    grocBudget = Double.valueOf(str[2]);
+                    grocBudget = Integer.valueOf(str[2]);
                     editGroc.setText(str[2]);
                     budget += grocBudget;
                     Button budgetBtn = (Button) findViewById(R.id.grocBtn);
                     budgetBtn.setText("Groceries: $" + grocBudget);
                 } else if (list.get(i).contains("Rest")) {
-                    rbBudget = Double.valueOf(str[2]);
+                    rbBudget = Integer.valueOf(str[2]);
                     editRB.setText(str[2]);
                     budget += rbBudget;
                     Button budgetBtn = (Button) findViewById(R.id.rbBtn);
                     budgetBtn.setText("Restaurants/Bars: $" + rbBudget);
                 } else if (list.get(i).contains("Misc")) {
-                    funBudget = Double.valueOf(str[2]);
+                    funBudget = Integer.valueOf(str[2]);
                     editFun.setText(str[2]);
                     budget += funBudget;
                     Button budgetBtn = (Button) findViewById(R.id.funBtn);
-                    budgetBtn.setText("Misc.: $" + funBudget);
+                    budgetBtn.setText("Miscellaneous: $" + funBudget);
                 } else if (list.get(i).contains("Bills")) {
-                    billsBudget = Double.valueOf(str[2]);
+                    billsBudget = Integer.valueOf(str[2]);
                     editBills.setText(str[2]);
                     budget += billsBudget;
                     Button budgetBtn = (Button) findViewById(R.id.billsBtn);
                     budgetBtn.setText("Bills: $" + billsBudget);
                 }
-                budgetView.setText("Total Budget :$" + budget);
+                budgetView.setText("Total Budget: $" + budget);
             }
 
         }
@@ -306,12 +307,13 @@ public class Budget extends AppCompatActivity {
 
     private class updateCategoryValueAsync extends AsyncTask<Void, Void, Integer> {
         String category;
-        Double amount;
+        Integer amount;
 
-        updateCategoryValueAsync(String category, Double amt) {
+        updateCategoryValueAsync(String category, Integer amt) {
+            MainActivity.log("update " + category + " to $" + amt);
             this.category = category;
             if (amt < 0) {
-                this.amount = 5.0;
+                this.amount = 5;
             } else {
                 this.amount = amt;
             }
@@ -332,7 +334,6 @@ public class Budget extends AppCompatActivity {
 
             String selection = Contract.CategoriesTable.COLUMN_NAME_NAME + " LIKE ?";
             String[] selectionArgs = {this.category};
-
 
             return db.update(
                     Contract.CategoriesTable.TABLE_NAME,

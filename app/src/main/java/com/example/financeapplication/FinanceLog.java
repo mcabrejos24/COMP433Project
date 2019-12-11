@@ -173,8 +173,8 @@ public class FinanceLog extends AppCompatActivity {
         Log.d("sirine", "at 2: " + spin.getItemAtPosition(2).toString());
         Log.d("sirine", "at 3: " + spin.getItemAtPosition(3).toString());
         Log.d("sirine", "at 4: " + spin.getItemAtPosition(4).toString());
-
         if (category != null) {
+            MainActivity.log(category);
             switch(category) {
                 case "Transportation":
                     spin.setSelection(1);
@@ -192,6 +192,9 @@ public class FinanceLog extends AppCompatActivity {
                     spin.setSelection(0);
                     break;
             }
+        }
+        else {
+            spin.setSelection(0);
         }
     }
 
@@ -260,10 +263,12 @@ public class FinanceLog extends AppCompatActivity {
     public void onSubmit(View view) {
         Spinner categories = (Spinner) findViewById(R.id.categoryTitle);
         String Category = categories.getSelectedItem().toString();
+        Log.d("sirine","category: " + Category);
         TextView expense = findViewById(R.id.expense);
         Log.d("sirine","expense: " + expense.getText().toString());
         TextView amount = findViewById(R.id.amount);
-        Log.d("sirine","amount: " + amount.getText().toString());
+        Integer amt = Integer.parseInt(amount.getText().toString().replace("$", ""));
+        Log.d("sirine","amount: " + amt);
         TextView date = findViewById(R.id.date);
         Log.d("sirine","date: " + date.getText().toString());
     }
