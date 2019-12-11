@@ -29,11 +29,11 @@ public class Options {
         map.put("Uber", "Transportation");
         map.put("Lyft", "Transportation");
         map.put("airplane ticket", "Transportation");
-        map.put("Target", "Misc");
-        map.put("Walmart", "Misc");
-        map.put("makeup", "Misc");
-        map.put("toiletries", "Misc");
-        map.put("skydiving", "Misc");
+        map.put("Target", "Miscellaneous");
+        map.put("Walmart", "Miscellaneous");
+        map.put("makeup", "Miscellaneous");
+        map.put("toiletries", "Miscellaneous");
+        map.put("skydiving", "Miscellaneous");
     }
 
     public void add(String key, String value) {

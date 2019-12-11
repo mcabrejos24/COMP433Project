@@ -29,7 +29,7 @@ public final class Contract {
                 + COLUMN_NAME_EXPENSE + " TEXT, "
                 + COLUMN_NAME_CATEGORY + " TEXT, "
                 + COLUMN_NAME_DATE + " TEXT, "
-                + COLUMN_NAME_AMOUNT + " TEXT) ";
+                + COLUMN_NAME_AMOUNT + " INTEGER) ";
     }
 
 }
