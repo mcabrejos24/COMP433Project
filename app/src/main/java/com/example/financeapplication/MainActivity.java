@@ -112,7 +112,11 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             PieChartView pieChartView = findViewById(R.id.chart);
-            int[] colors = {Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED, Color.LTGRAY};
+            int[] colors = {Color.rgb(56,160,217),
+                    Color.rgb(66,174,134),
+                    Color.rgb(132,81, 154),
+                    Color.rgb(231,92, 88),
+                    Color.rgb(250, 205, 87)};
             int colorpicker = 0;
             while (cursor.moveToNext()) {
                 pieData.add(new SliceValue(cursor.getInt(1), colors[colorpicker]).setLabel(cursor.getString(0) + ": $" + cursor.getInt(1)));
