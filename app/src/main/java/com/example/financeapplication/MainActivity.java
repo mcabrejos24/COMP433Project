@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -77,6 +78,25 @@ public class MainActivity extends AppCompatActivity {
         Log.d("FINANCE_APP", string);
     }
 
+    public void sendEmail(View view) {
+        log("attempt to send email");
+//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//        emailIntent.setData(Uri.parse("mailto:manuelcabrejos97@gmail.com"));
+//        emailIntent.setType("text/plain");
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+//        emailIntent.putExtra(Intent.EXTRA_TEXT   , "Message Body");
+//
+//        try {
+//            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+//            finish();
+//        } catch (android.content.ActivityNotFoundException ex) {
+//            Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+//        }
+
+
+
+    }
+
     public class Query extends AsyncTask<Void, Void, Cursor> {
         String mTableName;
 
@@ -117,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
 //            return db.rawQuery("Select * from " + Contract.Expenses.TABLE_NAME + " Order by " + Contract.Expenses.COLUMN_NAME_DATE + " Desc", null);
         }
+
     }
 
 }
