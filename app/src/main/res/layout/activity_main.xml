@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="#38A0D9"
             android:fontFamily="@font/krona_one"
             android:onClick="toHistory"
             android:text="History" />
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="34dp"
             android:layout_weight="1"
-            android:background="#2196F3"
+            android:background="#38A0D9"
             android:fontFamily="@font/krona_one"
             android:onClick="toLog"
             android:text="Add Entry" />
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="#38A0D9"
             android:fontFamily="@font/krona_one"
             android:onClick="toBudget"
             android:text="Budget" />
