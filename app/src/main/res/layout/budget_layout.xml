@@ -22,7 +22,8 @@
             android:layout_width="233dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal" />
+            android:digits="0123456789"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/submitTrans"
@@ -51,7 +52,8 @@
             android:layout_width="234dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal" />
+            android:digits="0123456789"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/submitGroc"
@@ -81,7 +83,8 @@
             android:layout_width="234dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal" />
+            android:digits="0123456789"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/submitBills"
@@ -110,7 +113,8 @@
             android:layout_width="235dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal" />
+            android:digits="0123456789"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/submitRB"
@@ -139,7 +143,8 @@
             android:layout_width="235dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal" />
+            android:digits="0123456789"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/submitFun"

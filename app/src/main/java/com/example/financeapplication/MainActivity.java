@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDatabase = new DBHelper(this);
 //        new Query(Contract.Expenses.TABLE_NAME).execute();
+        new QueryPrint(Contract.Expenses.TABLE_NAME).execute();
 
 
 
@@ -84,6 +86,25 @@ public class MainActivity extends AppCompatActivity {
         Log.d("FINANCE_APP", string);
     }
 
+    public void sendEmail(View view) {
+        log("attempt to send email");
+//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//        emailIntent.setData(Uri.parse("mailto:manuelcabrejos97@gmail.com"));
+//        emailIntent.setType("text/plain");
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+//        emailIntent.putExtra(Intent.EXTRA_TEXT   , "Message Body");
+//
+//        try {
+//            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+//            finish();
+//        } catch (android.content.ActivityNotFoundException ex) {
+//            Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+//        }
+
+
+
+    }
+
     public class Query extends AsyncTask<Void, Void, Cursor> {
         String mTableName;
 
@@ -93,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Cursor cursor) {
-            log("on post execute -- should update colors");
             if (cursor == null || cursor.getCount() == 0) {
 //                Toast.makeText(FinanceLog.this, "NO DATA", Toast.LENGTH_SHORT).show();
                 return;
@@ -102,28 +122,41 @@ public class MainActivity extends AppCompatActivity {
             int[] colors = {Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED, Color.LTGRAY};
             int colorpicker = 0;
             while (cursor.moveToNext()) {
-//                MainActivity.log(cursor.getString(0));
-//                MainActivity.log("num " + cursor.getInt(1));
                 pieData.add(new SliceValue(cursor.getInt(1), colors[colorpicker]).setLabel(cursor.getString(0) + ": $" + cursor.getInt(1)));
                colorpicker++;
             }
             PieChartData pieChartData = new PieChartData(pieData);
             pieChartData.setHasLabels(true);
             pieChartView.setPieChartData(pieChartData);
-//            printCursor(cursor);
         }
 
         @Override
         protected Cursor doInBackground(Void... voids) {
             SQLiteDatabase db = mDatabase.getReadableDatabase();
-//            String[] projection = null;
-//            String selection = null;
-//            String[] selectionArgs = null;
-//            String sortOrder = null;
             return db.rawQuery("Select category, sum(amount) from " + Contract.Expenses.TABLE_NAME + " Group by " + Contract.Expenses.COLUMN_NAME_CATEGORY, null);
+        }
 
-//            return db.rawQuery("Select * from " + Contract.Expenses.TABLE_NAME + " Order by " + Contract.Expenses.COLUMN_NAME_DATE + " Desc", null);
+    }
+    public class QueryPrint extends AsyncTask<Void, Void, Cursor> {
+        String mTableName;
+
+        public QueryPrint(String name) {
+            mTableName = name;
+        }
+
+        @Override
+        protected void onPostExecute(Cursor cursor) {
+            if (cursor == null || cursor.getCount() == 0) {
+                Toast.makeText(MainActivity.this, "NO DATA", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            printCursor(cursor);
+        }
+        @Override
+        protected Cursor doInBackground(Void... voids) {
+            SQLiteDatabase db = mDatabase.getReadableDatabase();
+//            return db.rawQuery("Select category, sum(amount) from " + Contract.Expenses.TABLE_NAME + " Group by " + Contract.Expenses.COLUMN_NAME_CATEGORY, null);
+            return db.rawQuery("Select * from " + Contract.Expenses.TABLE_NAME + " Order by " + Contract.Expenses.COLUMN_NAME_DATE + " Desc", null);
         }
     }
-
 }

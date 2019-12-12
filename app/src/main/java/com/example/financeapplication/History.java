@@ -24,6 +24,7 @@ import static com.example.financeapplication.DBHelper.printCursor;
 
 public class History extends AppCompatActivity {
     DBHelper mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,6 @@ public class History extends AppCompatActivity {
         mDatabase = new DBHelper(this);
         new History.Query(Contract.Expenses.TABLE_NAME).execute();
     }
-
 
 
     public class Query extends AsyncTask<Void, Void, Cursor> {
@@ -51,13 +51,15 @@ public class History extends AppCompatActivity {
             int columnCount = cursor.getColumnCount();
 
 
-            TableLayout tableLayout = findViewById(R.id.tableLayout);
-            int j = 0;
+            final TableLayout tableLayout = findViewById(R.id.tableLayout);
+//            int j = 0;
+
             while (cursor.moveToNext()) {
                 TableRow row = new TableRow(History.this);
                 TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                 row.setLayoutParams(lp);
-                row.setId(j);
+                row.setId(cursor.getInt(0));
+                MainActivity.log("ID: " + row.getId());
                 tableLayout.addView(row);
                 TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                 lp2.weight = 1;
@@ -66,11 +68,11 @@ public class History extends AppCompatActivity {
                     tv.setLayoutParams(lp2);
                     switch (cursor.getType(i)) {
                         case Cursor.FIELD_TYPE_INTEGER:
-                          //  Log.d("plswork", "" + cursor.getInt(i));
+                            //  Log.d("plswork", "" + cursor.getInt(i));
                             tv.setText(cursor.getInt(i) + "");
                             break;
                         case Cursor.FIELD_TYPE_STRING:
-                          //  Log.d("plswork", "" + cursor.getString(i));
+                            //  Log.d("plswork", "" + cursor.getString(i));
                             tv.setText(cursor.getString(i));
                             break;
                         default:
@@ -83,20 +85,25 @@ public class History extends AppCompatActivity {
                 Button button = new Button(History.this);
                 button.setLayoutParams(lp2);
                 button.setText("Delete");
-                button.setOnClickListener( new View.OnClickListener() {
+                button.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         // TODO Auto-generated method stub
                         TableRow tr = (TableRow) v.getParent();
-                        for(int i = 0; i < 4; i++) {
-                            TextView t = (TextView) tr.getChildAt(i);
-                            Log.d("delete", t.getText().toString());
-                        }
+                        MainActivity.log("ID: " + tr.getId());
+                        deleteEntry(tr.getId());
+//                        for (int i = 0; i < 4; i++) {
+//                            TextView t = (TextView) tr.getChildAt(i);
+//                            Log.d("delete", t.getText().toString());
+//                        }
+                        TableLayout table = findViewById(R.id.tableLayout);
+                        table.removeView(tr);
+
                     }
                 });
                 row.addView(button);
-                j++;
+//                j++;
             }
         }
 
@@ -107,11 +114,12 @@ public class History extends AppCompatActivity {
         }
     }
 
-    public void delete(View v) {
-
+    public Integer deleteEntry (Integer id) {
+        SQLiteDatabase db = mDatabase.getWritableDatabase();
+        return db.delete(Contract.Expenses.TABLE_NAME,
+                "_id = ? ",
+                new String[] { Integer.toString(id) });
     }
-
-
 
 
 }
