@@ -19,6 +19,10 @@
         <activity android:name=".Budget"></activity>
         <activity android:name=".FinanceLog"></activity>
         <activity android:name=".History"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

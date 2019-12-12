@@ -26,8 +26,8 @@ public class Options {
         map.put("gas", "Transportation");
         map.put("car service", "Transportation");
         map.put("subway ticket", "Transportation");
-        map.put("Uber", "Transportation");
-        map.put("Lyft", "Transportation");
+        map.put("uber", "Transportation");
+        map.put("lift", "Transportation");
         map.put("airplane ticket", "Transportation");
         map.put("Target", "Miscellaneous");
         map.put("Walmart", "Miscellaneous");
