@@ -19,29 +19,31 @@
             android:layout_height="550dp" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <Button
             android:id="@+id/toHistory"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="#38A0D9"
+            android:background="@drawable/buttonshape"
             android:fontFamily="@font/krona_one"
             android:onClick="toHistory"
             android:text="History" />
 
         <Button
             android:id="@+id/toLog"
-            style="@android:style/Widget.DeviceDefault.Light.Button.Small"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#38A0D9"
+            android:background="@drawable/buttonshape"
             android:fontFamily="@font/krona_one"
             android:onClick="toLog"
             android:text="Add Entry" />
@@ -49,22 +51,20 @@
         <Button
             android:id="@+id/toBudget"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="#38A0D9"
+            android:background="@drawable/buttonshape"
             android:fontFamily="@font/krona_one"
             android:onClick="toBudget"
             android:text="Budget" />
     </LinearLayout>
 
 
-
-
     <Button
         android:id="@+id/sendEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="10"
+        android:layout_weight="1"
         android:onClick="sendEmail"
         android:text="Button" />
 
