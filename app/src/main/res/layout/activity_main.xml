@@ -16,35 +16,49 @@
         <lecho.lib.hellocharts.view.PieChartView
             android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="550dp" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/toLogPage"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="10"
-        android:onClick="toLog"
-        android:text="log page" />
+        android:layout_height="32dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/toBudgetPage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="toBudget"
-        android:text="Budget Page"
-        android:layout_weight="10"
-        />
+        <Button
+            android:id="@+id/toHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#38A0D9"
+            android:fontFamily="@font/krona_one"
+            android:onClick="toHistory"
+            android:text="History" />
 
-    <Button
-        android:id="@+id/toHistPage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="toHistory"
-        android:text="History Page"
-        android:layout_weight="10"
-        />
+        <Button
+            android:id="@+id/toLog"
+            style="@android:style/Widget.DeviceDefault.Light.Button.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:background="#38A0D9"
+            android:fontFamily="@font/krona_one"
+            android:onClick="toLog"
+            android:text="Add Entry" />
+
+        <Button
+            android:id="@+id/toBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#38A0D9"
+            android:fontFamily="@font/krona_one"
+            android:onClick="toBudget"
+            android:text="Budget" />
+    </LinearLayout>
+
+
+
 
     <Button
         android:id="@+id/sendEmail"
