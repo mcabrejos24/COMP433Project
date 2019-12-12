@@ -52,12 +52,14 @@ public class History extends AppCompatActivity {
 
 
             final TableLayout tableLayout = findViewById(R.id.tableLayout);
-            int j = 0;
+//            int j = 0;
+
             while (cursor.moveToNext()) {
                 TableRow row = new TableRow(History.this);
                 TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                 row.setLayoutParams(lp);
-                row.setId(j);
+                row.setId(cursor.getInt(0));
+                MainActivity.log("ID: " + row.getId());
                 tableLayout.addView(row);
                 TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                 lp2.weight = 1;
@@ -89,16 +91,19 @@ public class History extends AppCompatActivity {
                     public void onClick(View v) {
                         // TODO Auto-generated method stub
                         TableRow tr = (TableRow) v.getParent();
-                        for (int i = 0; i < 4; i++) {
-                            TextView t = (TextView) tr.getChildAt(i);
-                            Log.d("delete", t.getText().toString());
-                        }
+                        MainActivity.log("ID: " + tr.getId());
+                        deleteEntry(tr.getId());
+//                        for (int i = 0; i < 4; i++) {
+//                            TextView t = (TextView) tr.getChildAt(i);
+//                            Log.d("delete", t.getText().toString());
+//                        }
                         TableLayout table = findViewById(R.id.tableLayout);
                         table.removeView(tr);
+
                     }
                 });
                 row.addView(button);
-                j++;
+//                j++;
             }
         }
 
@@ -109,8 +114,11 @@ public class History extends AppCompatActivity {
         }
     }
 
-    public void delete(View v) {
-
+    public Integer deleteEntry (Integer id) {
+        SQLiteDatabase db = mDatabase.getWritableDatabase();
+        return db.delete(Contract.Expenses.TABLE_NAME,
+                "_id = ? ",
+                new String[] { Integer.toString(id) });
     }
 
 
